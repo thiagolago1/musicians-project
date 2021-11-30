@@ -12,13 +12,13 @@ const users: {
   age: number;
   companyId?: string;
   isAdmin: boolean;
-  created_at: string;
-  updated_at: string;
+  created_at: Date;
+  updated_at: Date;
 }[] = [];
 
 // Create users
 usersRoutes.post("/", (request, response) => {
-  const { name, instrument, age, companyId, isAdmin, created_at, updated_at } =
+  const { name, instrument, age, companyId, isAdmin } =
     request.body;
 
   const user = {
@@ -28,8 +28,8 @@ usersRoutes.post("/", (request, response) => {
     age,
     companyId,
     isAdmin,
-    created_at,
-    updated_at,
+    created_at: new Date(),
+    updated_at: new Date(),
   };
 
   users.push(user);
@@ -76,13 +76,20 @@ usersRoutes.put("/edit/:userId", (request, response) => {
       companyId,
       isAdmin,
     };
+
+    return response.status(200).json(users[findUserIndex]);
+
+  } else {
+
+    return response.status(404).json({ message: 'Deu ruim malandro!'});
+
   }
 
-  return response.status(200).json(users[findUserIndex]);
+  
 });
 
 // Delete user
-usersRoutes.delete("/:userId", async (request, response) => {
+usersRoutes.delete("/:userId", (request, response) => {
   const { userId } = request.params;
 
   const findUserIndex = users.findIndex((user) => user.userId === userId);
