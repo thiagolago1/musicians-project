@@ -7,9 +7,9 @@ class ListSchoolsUseCase {
   execute(): School[] {
     const schoolsList = this.schoolsRepository.list();
 
-    if (schoolsList) {
-      throw new Error("List doesn't exist");
-    }
+    // if (schoolsList) {
+    //   throw new Error("List doesn't exist");
+    // }
     return schoolsList;
   }
 }

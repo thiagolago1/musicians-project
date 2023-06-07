@@ -33,6 +33,7 @@ class SchoolsRepository implements ISchoolsRepository {
       name,
       address,
       createAt: new Date(),
+      updatedAt: new Date(),
     });
 
     this.schools.push(school);

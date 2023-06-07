@@ -7,7 +7,7 @@ class School {
   name: string;
   adminId: string;
   musiciansNumber: number;
-  adress: string;
+  address: string;
   isActive: boolean;
   musiciansRecord: Array<Musician>;
   createdAt: Date;
@@ -17,6 +17,11 @@ class School {
     if (!this.id) {
       this.id = uuidV4();
     }
+
+    this.adminId = "";
+    this.musiciansNumber = 0;
+    this.musiciansRecord = [];
+    this.isActive = true;
   }
 }
 
